@@ -13,5 +13,3 @@ router.delete('/usuario/:id', usuarioController.delete)
 module.exports = router
 
 // como fazer o not found ?? - 404
-
-// comunicaçao front - end = fetch 

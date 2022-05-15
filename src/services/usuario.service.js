@@ -7,7 +7,7 @@ exports.findAll = async () => {
         console.log("service")
         
         const usuarios = await Usuario.findAll({
-            attributes: ['id', 'username', 'email']
+            attributes:['id', 'nome', 'sobrenome', 'email', 'login', 'senha', 'foto_perfil', 'biografia', 'permissao']
         })
         console.log(usuarios);
         return usuarios
@@ -25,12 +25,17 @@ exports.findById = async (id) => {
     }
 }
 
-exports.create = async (username, email, password) => {
+exports.create = async (nome, sobrenome, email, login, senha, foto_perfil, biografia) => {
     try {
         const usuario = await Usuario.create({
-            username: username,
-            email: email,
-            password: password
+            nome : nome,
+            sobrenome : sobrenome,
+            email : email,
+            login : login,
+            senha : senha,
+            foto_perfil : foto_perfil,
+            biografia : biografia,
+            permissao : 3
         })
         return usuario
     } catch(e) {
@@ -38,10 +43,18 @@ exports.create = async (username, email, password) => {
     }
 }
 
-exports.uptade = async (id, username, email, password) => {
+exports.uptade = async (id, nome, sobrenome, email, login, senha, foto_perfil, biografia, permissao) => {
     try {
-        await Usuario.update(
-            {username: username, email: email, password: password},
+        await Usuario.update({
+            nome : nome,
+            sobrenome : sobrenome,
+            email : email,
+            login : login,
+            senha : senha,
+            foto_perfil : foto_perfil,
+            biografia : biografia,
+            permissao : permissao
+        },
             {where: {id: id}}
         )
     } catch(e) {

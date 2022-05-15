@@ -37,8 +37,8 @@ exports.findById = async (request, response) => {
 
 exports.create = async (request, response) => {
     try {
-        const {username, email, password} = request.body
-        const usuario = await usuarioService.create(username, email, password)
+        const {nome, sobrenome, email, login, senha, foto_perfil, biografia, permissao} = request.body
+        const usuario = await usuarioService.create(nome, sobrenome, email, login, senha, foto_perfil, biografia, permissao)
         response.status(200).send({
             message: 'Usuário cadastrado com sucesso',
             body:{
@@ -56,14 +56,20 @@ exports.create = async (request, response) => {
 exports.update = async (request, response) => {
     try {
         const id = parseInt(request.params.id)
-        const {username, email, password} = request.body
+        const {nome, sobrenome, email, login, senha, foto_perfil, biografia, permissao} = request.body
 
-        await usuarioService.uptade(id, username, email, password)
+        await usuarioService.uptade(nome, sobrenome, email, login, senha, foto_perfil, biografia, permissao)
         response.status(200).send({
             message:'Usuário alterado com sucesso!',
             body:{
-                username: username,
-                email: email
+                nome : nome,
+                sobrenome : sobrenome,
+                email : email,
+                login : login,
+                senha : senha,
+                foto_perfil : foto_perfil,
+                biografia : biografia,
+                permissao : permissao
             }
         })
     } catch(e) {

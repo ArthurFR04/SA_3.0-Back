@@ -5,21 +5,39 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true,
             autoIncrement: true
         },
-        username:{
-            type: Sequelize.STRING(40),
+        nome:{
+            type: Sequelize.STRING(30),
             notNull: true,
             is:/^[a-zA-Z0-9\._]{4, 32}$/,
-            unique: true
+        },
+        sobrenome:{
+            type: Sequelize.STRING(80),
+            notNull: true,
+            is:/^[a-zA-Z0-9\._]{4, 32}$/,
         },
         email:{
             type: Sequelize.STRING(100),
             notNull: true,
             unique: true
         },
-        password:{
+        login:{
+            type: Sequelize.STRING(40),
+            notNull: true,
+            unique: true
+        },
+        senha:{
             type: Sequelize.STRING(50),
             notNull: true
-        }
+        },
+        foto_perfil:{
+            type: Sequelize.STRING(100)
+        },
+        biografia:{
+            type: Sequelize.STRING(1000)
+        },
+        permissao:{
+            type: Sequelize.INTEGER
+        },
     },{
         timestamps: false
     })
