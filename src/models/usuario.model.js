@@ -20,11 +20,6 @@ module.exports = (sequelize, Sequelize) => {
             notNull: true,
             unique: true
         },
-        login:{
-            type: Sequelize.STRING(40),
-            notNull: true,
-            unique: true
-        },
         senha:{
             type: Sequelize.STRING(50),
             notNull: true

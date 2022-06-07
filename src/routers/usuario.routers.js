@@ -5,6 +5,7 @@ router.get('/usuario', usuarioController.findAll)
 router.get('/usuario/:id', usuarioController.findById)
 
 router.post('/usuario', usuarioController.create)
+router.post('/login', usuarioController.login)
 
 router.put('/usuario/:id', usuarioController.update)
 

@@ -4,12 +4,10 @@ const Usuario = db.usuarios
 
 exports.findAll = async () => {
     try {
-        console.log("service")
-        
         const usuarios = await Usuario.findAll({
-            attributes:['id', 'nome', 'sobrenome', 'email', 'login', 'senha', 'foto_perfil', 'biografia', 'permissao']
+            attributes: ['id', 'nome', 'sobrenome', 'email', 'senha', 'foto_perfil', 'biografia', 'permissao']
         })
-        console.log(usuarios);
+
         return usuarios
     } catch (e) {
         throw Error(`Ocorreu um erro ao selecionar os usuários. Erro: ${e.message}`)
@@ -17,47 +15,45 @@ exports.findAll = async () => {
 }
 
 exports.findById = async (id) => {
-    try{
+    try {
         const usuario = await Usuario.findByPk(id)
         return usuario != null ? usuario : "Usuário não encontrado"
-    } catch(e) {
+    } catch (e) {
         throw Error(`Ocorreu um erro ao selecionar o usuário. Erro: ${e.message}`)
     }
 }
 
-exports.create = async (nome, sobrenome, email, login, senha, foto_perfil, biografia) => {
+exports.create = async (nome, sobrenome, email, senha, foto_perfil, biografia) => {
     try {
         const usuario = await Usuario.create({
-            nome : nome,
-            sobrenome : sobrenome,
-            email : email,
-            login : login,
-            senha : senha,
-            foto_perfil : foto_perfil,
-            biografia : biografia,
-            permissao : 3
+            nome: nome,
+            sobrenome: sobrenome,
+            email: email,
+            senha: senha,
+            foto_perfil: foto_perfil,
+            biografia: biografia,
+            permissao: 3
         })
         return usuario
-    } catch(e) {
+    } catch (e) {
         throw Error(`Ocorreu um erro ao salvar. Erro: ${e.message}`)
     }
 }
 
-exports.uptade = async (id, nome, sobrenome, email, login, senha, foto_perfil, biografia, permissao) => {
+exports.uptade = async (id, nome, sobrenome, email, senha, foto_perfil, biografia, permissao) => {
     try {
         await Usuario.update({
-            nome : nome,
-            sobrenome : sobrenome,
-            email : email,
-            login : login,
-            senha : senha,
-            foto_perfil : foto_perfil,
-            biografia : biografia,
-            permissao : permissao
+            nome: nome,
+            sobrenome: sobrenome,
+            email: email,
+            senha: senha,
+            foto_perfil: foto_perfil,
+            biografia: biografia,
+            permissao: permissao
         },
-            {where: {id: id}}
+            { where: { id: id } }
         )
-    } catch(e) {
+    } catch (e) {
         throw Error(`Ocorreu um erro ao buscar o usuário. Error: ${e.message}`)
     }
 }
@@ -65,9 +61,41 @@ exports.uptade = async (id, nome, sobrenome, email, login, senha, foto_perfil, b
 exports.delete = async (id) => {
     try {
         await Usuario.destroy({         // await Usuario.delete
-            where: {id: id}
+            where: { id: id }
         })
-    } catch(e) {
+    } catch (e) {
         throw Error(`Não foi possível excluir o usuário. Error: ${e.message}`)
+    }
+}
+
+
+
+exports.findByEmailAndSenha = async (email, senha) => {
+    try {
+
+        const usuarios = await Usuario.findAll(
+            { where: { 
+                email : email , 
+                senha : senha 
+            }
+        })
+
+        if (usuarios.length === 0){
+            throw "Usuário ou senha não existem"
+        }
+
+        
+
+        // if (usuarios == false) {
+        //     throw 'errinho'
+        // }
+        // else {
+        //     console.log(`\n\n\n os nossos usuários ai:${usuarios}`);
+            return usuarios
+        // }
+
+    } catch (e) {
+        
+        throw e
     }
 }
