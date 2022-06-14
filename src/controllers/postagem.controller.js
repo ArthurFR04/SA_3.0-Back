@@ -2,8 +2,10 @@ const { request, response } = require('../app')
 const postagemService = require('../services/postagem.service')
 
 exports.findAll = async (request, response) => {
+    console.log('\n\n\n\ncontroller\n\n\n\n');
     try{
         const postagens = await postagemService.findAll()
+        console.log('\n\n\n'+postagens);
         return response.status(200).json({
             status: 200,
             data: postagens,

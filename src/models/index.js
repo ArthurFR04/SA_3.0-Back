@@ -19,4 +19,6 @@ db.Sequelize = Sequelize
 db.sequelize = sequelize
 db.usuarios = require('../models/usuario.model')(db.sequelize, db.Sequelize)
 db.usuarios.sync()
+db.postagens = require('../models/postagem.model')(db.sequelize, db.Sequelize)
+db.postagens.sync()
 module.exports = db

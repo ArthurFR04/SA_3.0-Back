@@ -5,7 +5,7 @@ router.get('/postagem', postagemController.findAll)
 router.get('/postagem/:id', postagemController.findById)
 
 router.post('/postagem', postagemController.create)
-router.post('/login', postagemController.login)
+
 
 router.put('/postagem/:id', postagemController.update)
 

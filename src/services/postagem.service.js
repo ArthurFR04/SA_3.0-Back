@@ -5,7 +5,7 @@ const Postagem = db.postagens
 exports.findAll = async () => {
     try {
         const postagens = await Postagem.findAll({
-            attributes: ['id', 'nome', 'sobrenome', 'email', 'senha', 'foto_perfil', 'biografia', 'permissao']
+            attributes: ['id', 'titulo', 'descricao', 'foto', 'dt_postagem']
         })
 
         return postagens
@@ -23,16 +23,13 @@ exports.findById = async (id) => {
     }
 }
 
-exports.create = async (nome, sobrenome, email, senha, foto_perfil, biografia) => {
+exports.create = async (titulo, descricao, foto, dt_postagem) => {
     try {
         const postagem = await Postagem.create({
-            nome: nome,
-            sobrenome: sobrenome,
-            email: email,
-            senha: senha,
-            foto_perfil: foto_perfil,
-            biografia: biografia,
-            permissao: 3
+            titulo: titulo,
+            descricao: descricao,
+            foto: foto,
+            dt_postagem: dt_postagem
         })
         return postagem
     } catch (e) {
@@ -40,16 +37,13 @@ exports.create = async (nome, sobrenome, email, senha, foto_perfil, biografia) =
     }
 }
 
-exports.uptade = async (id, nome, sobrenome, email, senha, foto_perfil, biografia, permissao) => {
+exports.uptade = async (id, titulo, descricao, foto, dt_postagem) => {
     try {
         await Postagem.update({
-            nome: nome,
-            sobrenome: sobrenome,
-            email: email,
-            senha: senha,
-            foto_perfil: foto_perfil,
-            biografia: biografia,
-            permissao: permissao
+            titulo: titulo,
+            descricao: descricao,
+            foto: foto,
+            dt_postagem: dt_postagem
         },
             { where: { id: id } }
         )
