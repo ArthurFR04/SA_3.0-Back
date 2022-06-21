@@ -17,8 +17,21 @@ const sequelize = new Sequelize(
 const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
+
 db.usuarios = require('../models/usuario.model')(db.sequelize, db.Sequelize)
-db.usuarios.sync()
 db.postagens = require('../models/postagem.model')(db.sequelize, db.Sequelize)
-db.postagens.sync()
+
+db.usuarios.hasMany(db.postagens, { as: "postagens"})
+db.postagens.belongsTo(db.usuarios, {
+    foreignKey: "usuarioId",
+    as: "usuario"
+})
+
+const run = async() =>{
+}
+
+db.sequelize.sync({force: true}).then(() => {
+    console.log("Updating");
+    run()
+})
 module.exports = db
