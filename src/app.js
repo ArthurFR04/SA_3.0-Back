@@ -5,6 +5,7 @@ const app = express()
 const index = require('./routers/index')
 const usuarioRouters = require('./routers/usuario.routers')
 const postagemRouters = require('./routers/postagem.routers')
+const comentarioRouters = require('./routers/comentario.routers')
 
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
@@ -14,5 +15,6 @@ app.use(cors())
 app.use(index)
 app.use('/api/', usuarioRouters)
 app.use('/api/', postagemRouters)
+app.use('/api/', comentarioRouters)
 
 module.exports = app

@@ -1,18 +1,18 @@
 const { request, response } = require('../app')
-const postagemService = require('../services/postagem.service')
+const comentarioService = require('../services/comentario.service')
 
 exports.findAll = async (request, response) => {
     console.log('\n\n\n\ncontroller\n\n\n\n');
-    try{
-        const postagens = await postagemService.findAll()
-        console.log('\n\n\n'+postagens);
+    try {
+        const comentarios = await comentarioService.findAll()
+        console.log('\n\n\n' + comentarios);
         return response.status(200).json({
             status: 200,
-            data: postagens,
+            data: comentarios,
             message: 'Operação realizada com sucesso!'
 
         })
-    }catch(e) {
+    } catch (e) {
         response.send(400).json({
             status: 400,
             message: e
@@ -23,13 +23,13 @@ exports.findAll = async (request, response) => {
 exports.findById = async (request, response) => {
     try {
         const id = parseInt(request.params.id)
-        const postagem = await postagemService.findById(id)
+        const comentario = await comentarioService.findById(id)
         response.status(200).json({
             status: 200,
-            data: postagem,
+            data: comentario,
             message: 'Consulta realizada com sucesso'
         })
-    } catch(e) {
+    } catch (e) {
         response.send(400).json({
             status: 400,
             message: e
@@ -39,18 +39,18 @@ exports.findById = async (request, response) => {
 
 exports.create = async (request, response) => {
     try {
-        const {titulo, descricao, foto, dt_postagem} = request.body
-        const postagem = await postagemService.create(titulo, descricao, foto, dt_postagem)
+        const { id_usuario, id_postagem, id_comen_respon, dt_comentario, conteudo } = request.body
+        const comentario = await comentarioService.create(id_usuario, id_postagem, id_comen_respon, dt_comentario, conteudo)
         response.status(200).send({
-            message: 'Postagem cadastrada com sucesso',
-            body:{
-                postagem: postagem
+            message: 'Comentario cadastrada com sucesso',
+            body: {
+                comentario: comentario
             }
         })
-    } catch(e) {
+    } catch (e) {
         response.send(400).json({
             status: 400,
-            message: `Erro ao cadastrar a postagem. Erro: ${e}`
+            message: `Erro ao cadastrar a comentario. Erro: ${e}`
         })
     }
 }
@@ -58,19 +58,20 @@ exports.create = async (request, response) => {
 exports.update = async (request, response) => {
     try {
         const id = parseInt(request.params.id)
-        const {titulo, descricao, foto, dt_postagem} = request.body
+        const { id_usuario, id_postagem, id_comen_respon, dt_comentario, conteudo } = request.body
 
-        await postagemService.uptade(id, titulo, descricao, foto, dt_postagem)
+        await comentarioService.uptade(id, id_usuario, id_postagem, id_comen_respon, dt_comentario, conteudo)
         response.status(200).send({
-            message:'Postagem alterada com sucesso!',
-            body:{
-                titulo : titulo,
-                descricao : descricao,
-                foto : foto,
-                dt_postagem : dt_postagem
+            message: 'Comentario alterada com sucesso!',
+            body: {
+                id_usuario: id_usuario,
+                id_postagem: id_postagem,
+                id_comen_respon: id_comen_respon,
+                dt_comentario: dt_comentario,
+                conteudo: conteudo
             }
         })
-    } catch(e) {
+    } catch (e) {
         return response.status(400).json({
             status: 400,
             message: e.message
@@ -82,11 +83,11 @@ exports.delete = async (request, response) => {
     try {
         const id = parseInt(request.params.id)
 
-        await postagemService.delete(id)
+        await comentarioService.delete(id)
         response.status(200).send({
-            message:'Postagem deletado com sucesso!'
+            message: 'Comentario deletado com sucesso!'
         })
-    } catch(e) {
+    } catch (e) {
         return response.status(400).json({
             status: 400,
             message: e.message
@@ -94,5 +95,4 @@ exports.delete = async (request, response) => {
     }
 }
 
-
-// titulo       descricao       foto        dt_postagem
+// id_usuario, id_postagem, id_comen_respon, dt_comentario, conteudo
