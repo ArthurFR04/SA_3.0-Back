@@ -60,7 +60,7 @@ exports.update = async (request, response) => {
         const id = parseInt(request.params.id)
         const { id_usuario, id_postagem, id_comen_respon, dt_comentario, conteudo } = request.body
 
-        await comentarioService.uptade(id, id_usuario, id_postagem, id_comen_respon, dt_comentario, conteudo)
+        await comentarioService.update(id, id_usuario, id_postagem, id_comen_respon, dt_comentario, conteudo)
         response.status(200).send({
             message: 'Comentario alterada com sucesso!',
             body: {

@@ -39,8 +39,8 @@ exports.findById = async (request, response) => {
 
 exports.create = async (request, response) => {
     try {
-        const {titulo, descricao, foto, dt_postagem} = request.body
-        const postagem = await postagemService.create(titulo, descricao, foto, dt_postagem)
+        const {titulo, descricao, foto, dt_postagem, usuarioId} = request.body
+        const postagem = await postagemService.create(titulo, descricao, foto, dt_postagem, usuarioId)
         response.status(200).send({
             message: 'Postagem cadastrada com sucesso',
             body:{
@@ -60,7 +60,7 @@ exports.update = async (request, response) => {
         const id = parseInt(request.params.id)
         const {titulo, descricao, foto, dt_postagem} = request.body
 
-        await postagemService.uptade(id, titulo, descricao, foto, dt_postagem)
+        await postagemService.update(id, titulo, descricao, foto, dt_postagem)
         response.status(200).send({
             message:'Postagem alterada com sucesso!',
             body:{

@@ -38,7 +38,7 @@ exports.create = async (id_usuario, id_postagem, id_comen_respon, dt_comentario,
     }
 }
 
-exports.uptade = async (id, id_usuario, id_postagem, id_comen_respon, dt_comentario, conteudo) => {
+exports.update = async (id, id_usuario, id_postagem, id_comen_respon, dt_comentario, conteudo) => {
     try {
         await Comentario.update({
             id_usuario: id_usuario,

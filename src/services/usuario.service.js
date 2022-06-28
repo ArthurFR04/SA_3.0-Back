@@ -40,7 +40,7 @@ exports.create = async (nome, sobrenome, email, senha, foto_perfil, biografia) =
     }
 }
 
-exports.uptade = async (id, nome, sobrenome, email, senha, foto_perfil, biografia, permissao) => {
+exports.update = async (id, nome, sobrenome, email, senha, foto_perfil, biografia, permissao) => {
     try {
         await Usuario.update({
             nome: nome,
