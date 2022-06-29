@@ -5,7 +5,7 @@ const Comentario = db.comentarios
 exports.findAll = async () => {
     try {
         const comentarios = await Comentario.findAll({
-            attributes: ['id', 'id_usuario', 'id_postagem', 'id_comen_respon', 'dt_comentario', 'conteudo']
+            attributes: ['id', 'dt_comentario', 'conteudo', 'usuarioId', 'postagenId', 'comentarioId' ]
         })
 
         return comentarios
@@ -23,12 +23,12 @@ exports.findById = async (id) => {
     }
 }
 
-exports.create = async (id_usuario, id_postagem, id_comen_respon, dt_comentario, conteudo) => {
+exports.create = async (usuarioId, postagenId, comentarioId, dt_comentario, conteudo) => {
     try {
         const comentario = await Comentario.create({
-            id_usuario: id_usuario,
-            id_postagem: id_postagem,
-            id_comen_respon: id_comen_respon,
+            usuarioId: usuarioId,
+            postagenId: postagenId,
+            comentarioId: comentarioId,
             dt_comentario: dt_comentario,
             conteudo: conteudo
         })
@@ -38,12 +38,12 @@ exports.create = async (id_usuario, id_postagem, id_comen_respon, dt_comentario,
     }
 }
 
-exports.update = async (id, id_usuario, id_postagem, id_comen_respon, dt_comentario, conteudo) => {
+exports.update = async (id, usuarioId, postagenId, comentarioId, dt_comentario, conteudo) => {
     try {
         await Comentario.update({
-            id_usuario: id_usuario,
-            id_postagem: id_postagem,
-            id_comen_respon: id_comen_respon,
+            usuarioId: usuarioId,
+            postagenId: postagenId,
+            comentarioId: comentarioId,
             dt_comentario: dt_comentario,
             conteudo: conteudo
         },

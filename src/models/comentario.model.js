@@ -5,18 +5,6 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true,
             autoIncrement: true
         },
-        // id_usuario:{
-        //     type: Sequelize.INTEGER,
-        //     primaryKey: true
-        // },
-        // id_postagem:{
-        //     type: Sequelize.INTEGER,
-        //     primaryKey: true
-        // },
-        // id_comen_respon:{
-        //     type: Sequelize.INTEGER,
-        //     primaryKey: true
-        // },
         dt_comentario:{
             type: Sequelize.DATE
         },

@@ -39,8 +39,8 @@ exports.findById = async (request, response) => {
 
 exports.create = async (request, response) => {
     try {
-        const { id_usuario, id_postagem, id_comen_respon, dt_comentario, conteudo } = request.body
-        const comentario = await comentarioService.create(id_usuario, id_postagem, id_comen_respon, dt_comentario, conteudo)
+        const { usuarioId, postagenId, comentarioId, dt_comentario, conteudo } = request.body
+        const comentario = await comentarioService.create(usuarioId, postagenId, comentarioId, dt_comentario, conteudo)
         response.status(200).send({
             message: 'Comentario cadastrada com sucesso',
             body: {
@@ -58,15 +58,15 @@ exports.create = async (request, response) => {
 exports.update = async (request, response) => {
     try {
         const id = parseInt(request.params.id)
-        const { id_usuario, id_postagem, id_comen_respon, dt_comentario, conteudo } = request.body
+        const { usuarioId, postagenId, comentarioId, dt_comentario, conteudo } = request.body
 
-        await comentarioService.update(id, id_usuario, id_postagem, id_comen_respon, dt_comentario, conteudo)
+        await comentarioService.update(id, usuarioId, postagenId, comentarioId, dt_comentario, conteudo)
         response.status(200).send({
             message: 'Comentario alterada com sucesso!',
             body: {
-                id_usuario: id_usuario,
-                id_postagem: id_postagem,
-                id_comen_respon: id_comen_respon,
+                usuarioId: usuarioId,
+                postagenId: postagenId,
+                comentarioId: comentarioId,
                 dt_comentario: dt_comentario,
                 conteudo: conteudo
             }
@@ -95,4 +95,4 @@ exports.delete = async (request, response) => {
     }
 }
 
-// id_usuario, id_postagem, id_comen_respon, dt_comentario, conteudo
+// usuarioId, postagenId, comentarioId, dt_comentario, conteudo
