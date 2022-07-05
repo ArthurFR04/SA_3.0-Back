@@ -33,11 +33,11 @@ db.postagens.belongsTo(db.usuarios && db.postagens, {
     as: "postagem"
 })
 
-// const run = async() =>{
-// }
+const run = async() =>{
+}
 
 db.sequelize.sync({force: true}).then(() => {
-    // console.log("Updating");
-    // run()
+    console.log("Updating");
+    run()
 })
 module.exports = db
