@@ -36,8 +36,8 @@ db.postagens.belongsTo(db.usuarios && db.postagens, {
 // const run = async() =>{
 // }
 
-db.sequelize.sync({force: true}).then(() => {
+// db.sequelize.sync({force: true}).then(() => {
     // console.log("Updating");
     // run()
-})
+// })
 module.exports = db
