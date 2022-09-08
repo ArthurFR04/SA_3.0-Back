@@ -36,7 +36,7 @@ exports.create = async (nome, sobrenome, email, senha, foto_perfil, biografia) =
         })
         return usuario
     } catch (e) {
-        throw Error(`Ocorreu um erro ao salvar. Erro: ${e.message}`)
+        throw `Ocorreu um erro ao salvar o usuário. Erro: ${e.message}`
     }
 }
 

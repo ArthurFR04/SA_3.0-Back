@@ -40,15 +40,17 @@ exports.create = async (request, response) => {
         const {nome, sobrenome, email, senha, foto_perfil, biografia, permissao} = request.body
         const usuario = await usuarioService.create(nome, sobrenome, email, senha, foto_perfil, biografia, permissao)
         response.status(200).send({
+            status: 200,
             message: 'Usuário cadastrado com sucesso',
             body:{
                 usuario: usuario
             }
         })
-    } catch(e) {
-        response.send(400).json({
-            status: 400,
-            message: `Erro ao cadastrar o usuário. Erro: ${e}`
+    }catch(e) {
+
+        response.status(400).json({
+            message: `Mensagem de Erro: ${e}`,
+            status: 400           
         })
     }
 }
