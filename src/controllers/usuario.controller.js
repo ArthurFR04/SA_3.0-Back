@@ -49,7 +49,7 @@ exports.create = async (request, response) => {
     }catch(e) {
 
         response.status(400).json({
-            message: `Mensagem de Erro: ${e}`,
+            message: `${e}`,
             status: 400           
         })
     }
@@ -112,7 +112,7 @@ exports.login = async (request, response) => {
     }catch(e) {
 
         response.status(400).json({
-            message: `Mensagem de Erro: ${e}`,
+            message: `${e}`,
             status: 400           
         })
     }

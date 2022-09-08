@@ -10,7 +10,7 @@ exports.findAll = async () => {
 
         return usuarios
     } catch (e) {
-        throw Error(`Ocorreu um erro ao selecionar os usuários. Erro: ${e.message}`)
+        throw `Ocorreu um erro ao selecionar os usuários. \n\nErro: ${e.message}`
     }
 }
 
@@ -19,7 +19,7 @@ exports.findById = async (id) => {
         const usuario = await Usuario.findByPk(id)
         return usuario != null ? usuario : "Usuário não encontrado"
     } catch (e) {
-        throw Error(`Ocorreu um erro ao selecionar o usuário. Erro: ${e.message}`)
+        throw `Ocorreu um erro ao selecionar o usuário. \n\nErro: ${e.message}`
     }
 }
 
@@ -36,7 +36,7 @@ exports.create = async (nome, sobrenome, email, senha, foto_perfil, biografia) =
         })
         return usuario
     } catch (e) {
-        throw `Ocorreu um erro ao salvar o usuário. Erro: ${e.message}`
+        throw `Ocorreu um erro ao salvar o usuário. \n\nErro: ${e.message}`
     }
 }
 
@@ -54,7 +54,7 @@ exports.update = async (id, nome, sobrenome, email, senha, foto_perfil, biografi
             { where: { id: id } }
         )
     } catch (e) {
-        throw Error(`Ocorreu um erro ao buscar o usuário. Error: ${e.message}`)
+        throw `Ocorreu um erro ao buscar o usuário. Error: ${e.message}`
     }
 }
 
@@ -64,7 +64,7 @@ exports.delete = async (id) => {
             where: { id: id }
         })
     } catch (e) {
-        throw Error(`Não foi possível excluir o usuário. Error: ${e.message}`)
+        throw `Não foi possível excluir o usuário. Error: ${e.message}`
     }
 }
 
@@ -82,7 +82,7 @@ exports.findByEmailAndSenha = async (email, senha) => {
             {
                 attributes: ['id', 'nome', 'sobrenome', 'email', 'foto_perfil', 'biografia', 'permissao']
             },
-            console.log('\n\n\nservice     ' + email),
+            // console.log('\n\n\nservice     ' + email),
         )
 
         if (usuarios.length === 0) {
