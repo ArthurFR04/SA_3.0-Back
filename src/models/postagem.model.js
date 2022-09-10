@@ -21,7 +21,7 @@ module.exports = (sequelize, Sequelize) => {
             unique: true
         },
         dt_postagem:{
-            type: Sequelize.DATE
+            type: Sequelize.DATEONLY
         },
 
     },{
