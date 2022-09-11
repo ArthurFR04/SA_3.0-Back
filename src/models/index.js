@@ -29,8 +29,8 @@ db.comentarios.hasMany(db.comentarios, { as: "comentarios"})
 db.postagens.belongsTo(db.usuarios && db.postagens, {
     foreignKey: "usuarioId",
     as: "usuario",
-    foreignKey: "postagemId",
-    as: "postagem"
+    foreignKey: "postagenId",
+    as: "postagen"
 })
 
 // const run = async() =>{
@@ -40,4 +40,5 @@ db.postagens.belongsTo(db.usuarios && db.postagens, {
 //     console.log("Updating");
 //     run()
 // })
+
 module.exports = db

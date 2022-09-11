@@ -12,6 +12,9 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.TEXT(500),
             notNull: true,
             unique: true
+        },
+        postagenId:{
+            type: Sequelize.INTEGER
         }
         
     },{
